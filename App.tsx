@@ -26,8 +26,8 @@ import {
 } from 'lucide-react';
 import { FinancialData, AIAnalysisResponse } from './types';
 import { ECONOMY_DEFAULTS } from './constants';
-import FinancialChart from './components/FinancialChart';
-import { analyzeImpact } from './services/geminiService';
+import FinancialChart from './FinancialChart';
+import { analyzeImpact } from './geminiService';
 
 const App: React.FC = () => {
   const [data, setData] = useState<FinancialData>({
