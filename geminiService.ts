@@ -3,7 +3,7 @@ import { GoogleGenAI, Type } from "@google/genai";
 import { FinancialData } from "../types";
 
 export const analyzeImpact = async (data: FinancialData, originalData: FinancialData) => {
-  const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_API_KEY || "" });
+  const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_API_KEY });
   
   const prompt = `
     Como asesor experto en economía doméstica colombiana para la campaña de Sandra al Senado 2026, cuya propuesta bandera es "La Ley Contra los Abusos en los Servicios Públicos".
