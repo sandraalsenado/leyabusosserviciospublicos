@@ -56,12 +56,15 @@ const App: React.FC = () => {
     setData(prev => ({ ...prev, [name]: value }));
   };
 
-  const calculateImpact = async () => {
-    setLoading(true);
+const calculateImpact = async () => {
+  setLoading(true);
+  try {
     const result = await analyzeImpact(data, initialData);
     setAiAnalysis(result);
+  } finally {
     setLoading(false);
-  };
+  }
+};
 
   const totalExpenses = 
     data.electricity + 
