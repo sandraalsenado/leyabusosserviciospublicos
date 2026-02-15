@@ -1,11 +1,15 @@
 import { FinancialData } from "./types";
 
 export const analyzeImpact = async (data: FinancialData, originalData: FinancialData) => {
+  const controller = new AbortController();
+  const t = setTimeout(() => controller.abort(), 15000); // 15 segundos máximo
+
   try {
     const r = await fetch("/api/analyze", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ data, originalData })
+      body: JSON.stringify({ data, originalData }),
+      signal: controller.signal
     });
 
     return await r.json();
@@ -20,5 +24,7 @@ export const analyzeImpact = async (data: FinancialData, originalData: Financial
       ],
       sandraMessage: "¡Basta de abusos! No es justo que pagues más de luz que de comida. Vamos a recuperar el equilibrio del bolsillo."
     };
+  } finally {
+    clearTimeout(t);
   }
 };
