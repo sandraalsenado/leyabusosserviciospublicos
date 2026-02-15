@@ -59,12 +59,18 @@ const App: React.FC = () => {
 const calculateImpact = async () => {
   setLoading(true);
   try {
-    const result = await analyzeImpact(data, initialData);
-    setAiAnalysis(result);
+    const result: any = await analyzeImpact(data, initialData);
+
+    setAiAnalysis({
+      summary: typeof result?.summary === "string" ? result.summary : (result?.error ? "No se pudo generar el análisis." : ""),
+      recommendations: Array.isArray(result?.recommendations) ? result.recommendations : [],
+      sandraMessage: typeof result?.sandraMessage === "string" ? result.sandraMessage : ""
+    });
   } finally {
     setLoading(false);
   }
 };
+
 
   const totalExpenses = 
     data.electricity + 
