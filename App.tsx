@@ -83,6 +83,17 @@ const calculateImpact = async () => {
   const disposable = data.income - totalExpenses;
   const utilityPercentage = (totalUtilities / data.income) * 100;
 
+  // DEBUG: muestra errores en pantalla en vez de quedar blanco
+(window as any).onunhandledrejection = (e: any) => {
+  console.error("Unhandled promise rejection:", e?.reason || e);
+  alert("Error: " + (e?.reason?.message || e?.reason || e));
+};
+
+(window as any).onerror = (msg: any, src: any, line: any, col: any, err: any) => {
+  console.error("Window error:", msg, err);
+  alert("Error: " + (err?.message || msg));
+};
+
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 pb-20">
       <header className="bg-gradient-to-r from-blue-700 to-indigo-800 text-white py-6 px-4 shadow-lg sticky top-0 z-50">
