@@ -340,7 +340,7 @@ const calculateImpact = async () => {
                       Combatiendo los abusos:
                     </h4>
                     <ul className="space-y-4">
-                      {aiAnalysis.recommendations.map((rec, idx) => (
+                    {(aiAnalysis.recommendations || []).map((rec, idx) => (
                         <li key={idx} className="flex gap-4">
                           <span className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center text-white text-[10px] font-black mt-1">
                             {idx + 1}
